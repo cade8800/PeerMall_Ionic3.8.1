@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>填写游客信息</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)='addVisitor()'>
+        新增
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ul class="ustouristselectul">
+    <li class="touristinlist" *ngFor='let item of visitorList' [ngClass]="{'ustourselected':item.state}">
+      <div class="usisSelecttour" (click)='item.state=!item.state'>
+        <ion-icon name="md-checkbox-outline"></ion-icon>
+      </div>
+      <div class="ustourvisible" (click)='item.state=!item.state'>
+        <span class="ustourname usnowrap">{{item.VisitorName}}</span>
+        <span class="ustourid usnowrap">{{item.CredentialNumber}}</span>
+      </div>
+      <div class="touredit" (click)='editVisitor(item)'>
+        <span class="usiconbox">
+          <img src="assets/img/composebutton@2x.png" alt="">
+        </span>
+      </div>
+    </li>
+  </ul>
+
+</ion-content>
+
+<ion-footer class="mainFooter">
+  <button ion-button block color='FF8201' (click)='visitorSelected()'>完成</button>
+</ion-footer>

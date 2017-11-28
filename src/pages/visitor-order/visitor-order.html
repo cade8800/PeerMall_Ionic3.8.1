@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>填写游客信息</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ul class="ustourlistul">
+    <li class="touristinlist" *ngFor='let item of input.OrderVisitorListInput'>
+      <span class="ustournum">
+        <ion-icon name="ios-person"></ion-icon>
+      </span>
+      <div class="ustourinfo">
+        <span class="ustourlistname usnowrap">{{item.VisitorName}}</span>
+        <span class="ustourlistid usnowrap">{{item.CredentialNumber}}</span>
+      </div>
+    </li>
+  </ul>
+
+</ion-content>
+
+<ion-footer class="mainFooter">
+  <button ion-button block color='FF8201' (click)='getVisitor()'>选择出行人</button>
+</ion-footer>

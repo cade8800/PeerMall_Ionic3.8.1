@@ -1,0 +1,53 @@
+<ion-content>
+  <div class="back" (click)='navCtrl.pop()'>
+    <img src='assets/ui/backicion.png'>
+  </div>
+  <!-- <div class="share" (click)="uutShare(info.SupplierId, info.ProductId, info.ProductName,'single')">
+    <img src='assets/ui/shareicon.png'>
+  </div> -->
+  <ion-slides pager="true" class="mainSlides">
+    <ion-slide *ngFor='let item of info.Images' [ngStyle]="{'background-image':'url('+item.Path+')'}">
+    </ion-slide>
+  </ion-slides>
+
+  <div class="mainTitle">
+    <div class="title">
+      <!-- <img src='assets/ui/hot.png'>
+      <img src='assets/ui/sale.png'> -->
+      <span>{{info.ProductName}}</span>
+    </div>
+    <div class="price">
+      <span class="code">{{info.CurrencyCode|currencySymbolPipe}}</span>
+      <span class="quote">{{info.PeerPrice}}</span>起
+      <!-- <span class="oldquote">{{info.CurrencyCode|currencySymbolPipe}}{{info.RetailPrice}}起</span> -->
+    </div>
+    <ion-grid class="supplier">
+      <ion-row>
+        <ion-col col-auto>
+          <img src="assets/ui/supplier.png">
+        </ion-col>
+        <ion-col (click)='goSupplyStore()'>{{info.SupplierName}}</ion-col>
+        <ion-col col-auto>
+          <img src='assets/ui/rigth.png'>
+        </ion-col>
+        <ion-col col-auto class="cddd">|</ion-col>
+        <ion-col col-auto (click)='uesConsult()'>
+          <img src="assets/ui/useblue.png">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="mainContent">
+    <div class="title">
+      <span>产品详情</span>
+    </div>
+    <div [innerHtml]='info.Description'>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer class="mainFooter">
+  <button ion-button block color='FF8201' (click)='booking()'>立即预定</button>
+</ion-footer>

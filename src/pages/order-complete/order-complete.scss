@@ -1,0 +1,16 @@
+page-order-complete {
+  .scroll-content {
+    background-color: #F6F5FA;
+    .complete {
+      background-color: #fff;
+      padding: 16px;
+      text-align: center;
+      img {
+        max-width: 60px;
+      }
+    }
+    .productlist {
+      margin-top: 8px;
+    }
+  }
+}

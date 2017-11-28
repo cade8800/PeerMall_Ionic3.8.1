@@ -1,0 +1,79 @@
+counter-input {
+  // div {
+  //   width: 101px;
+  //   height: 25px;
+  //   overflow: hidden;
+  //   border: 1px solid #ddd;
+  //   border-radius: 4px;
+  //   .add {
+  //     float: left;
+  //     font-size: 25px;
+  //   }
+  //   .input {
+  //     float: left;
+  //     width: 5rem;
+  //     input {
+  //       background-color: #1DC08C;
+  //       color: #fff;
+  //       margin: 4px;
+  //       border-radius: 4px;
+  //       text-align: center;
+  //     }
+  //   }
+  //   .min {
+  //     float: left;
+  //     font-size: 25px;
+  //   }
+  // }
+  .grid {
+    width: 90px;
+    height: 30px;
+    overflow: hidden;
+    padding: 0px; // border: 1px solid #ddd;
+    // border-radius: 4px;
+    .row {
+      height: 30px;
+      overflow: hidden;
+      .col {
+        overflow: hidden;
+        height: 30px;
+        padding: 0px;
+        color: #059CE9;
+        text-align: center;
+        .add {
+          font-size: 22px;
+          margin: 4px;
+        }
+        .min {
+          font-size: 22px;
+          margin: 4px;
+        }
+      }
+      .inputcol {
+        background-color: #059CE9;
+        .input {
+          color: #fff;
+          margin-top: 4px;
+          input {
+            text-align: center;
+            font-size: 18px;
+            margin: 0px;
+            width: 100%;
+          }
+        }
+      }
+      .leftcol {
+        border-bottom: 1px solid #ddd;
+        border-left: 1px solid #ddd;
+        border-top: 1px solid #ddd;
+        border-radius: 4px 0px 0px 4px;
+      }
+      .rightcol {
+        border-bottom: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-top: 1px solid #ddd;
+        border-radius: 0px 4px 4px 0px;
+      }
+    }
+  }
+}

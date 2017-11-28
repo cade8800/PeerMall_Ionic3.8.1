@@ -1,0 +1,26 @@
+page-single-detail {
+  .scroll-content {
+    background-color: #F6F5FA;
+    .mainContent {
+      background-color: #fff;
+      padding: 10px;
+      .title {
+        border-bottom: 0.55px solid #ddd;
+        margin-bottom: 20px;
+        span {
+          position: relative;
+          width: 72px;
+          left: 50%;
+          margin-left: -36px;
+          top: 8px;
+          background-color: #fff;
+          padding: 3px 8px;
+        }
+      }
+    }
+  }
+  .mainFooter {
+    background-color: #F6F5FA;
+    padding: 3px 12px;
+  }
+}

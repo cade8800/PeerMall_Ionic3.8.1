@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>选择邮寄信息</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)='addShipping()'>
+        新增
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+  <ion-grid>
+    <ion-row *ngFor='let item of shippingList'>
+      <ion-col>
+        <h6 (click)='choiceShipping(item)'>{{item.ReceiverName}}
+          <small>{{item.PhoneNumber}}</small>
+        </h6>
+        <p (click)='choiceShipping(item)' class="add">{{item.Areas+item.Street}}</p>
+        <p class="operation">
+          <span class="default" *ngIf='item.IsDefault'>
+            <ion-radio color="lightblue" [checked]="item.IsDefault"></ion-radio>默认</span>
+          <span (click)='editShipping(item)'>
+            <img src="assets/img/edit@2x.png">编辑</span>
+          <span (click)='deleteShipping(item)'>
+            <img src="assets/img/del@2x.png">删除</span>
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

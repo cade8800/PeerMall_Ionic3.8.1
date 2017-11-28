@@ -1,0 +1,12 @@
+<div *ngIf='day'>
+  距结束剩
+  <span>{{day}}</span>&nbsp;&nbsp;天
+</div>
+<div *ngIf='!day'>
+  距结束剩
+  <span>{{hour}}</span>
+  <label>:</label>
+  <span>{{minute}}</span>
+  <label>:</label>
+  <span>{{second}}</span>
+</div>

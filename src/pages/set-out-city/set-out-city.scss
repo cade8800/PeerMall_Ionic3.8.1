@@ -1,0 +1,130 @@
+page-set-out-city {
+  .scroll-content {
+    background-color: #F6F5FA;
+    .history {
+      background-color: #fff;
+      margin-bottom: 8px;
+      .his-title {
+        padding: 15px 15px 0px;
+        font-size: 15px;
+        .icon {
+          float: right;
+        }
+      }
+      .grid {
+        .row {
+          .col {
+            .button {
+              width: 18%;
+            }
+          }
+        }
+      }
+    }
+    .ustabbox {
+      // position: fixed;
+      top: 142px;
+      width: 100%;
+      overflow: auto;
+      background-color: #fafafa;
+      .usstartcity {
+        position: relative;
+        width: 100%;
+        .uslefttab {
+          width: 78px;
+          float: left; // position: fixed;
+          ul {
+            width: 100%;
+            li {
+              position: relative;
+              width: 100%;
+              height: 44px;
+              font-size: 15px;
+              color: #1a1a1a;
+              text-align: center;
+              line-height: 44px;
+              background-color: #fafafa;
+              border-bottom: 1px solid #e9eaea;
+              border-right: 1px solid #e9eaea;
+            }
+            .cityactive {
+              color: #00a9fa;
+              background-color: #fff;
+              border: 0;
+              &:after {
+                width: 3px;
+                content: "";
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                background-color: #00a9fa;
+              }
+            }
+          }
+        }
+        .usrighttabcont {
+          margin-left: 78px;
+          overflow: auto;
+          .usrightcontul {
+            width: 100%;
+            .hotcicty {
+              background: #fff;
+            }
+            .usrightcontullist {
+              width: 100%;
+              .searchul {
+                padding: 10px 0 0 10px;
+                li {
+                  &:nth-child(5n) {
+                    margin-right: 10px;
+                  }
+                }
+              }
+              .usStateul {
+                width: 100%;
+                .usStatelist {
+                  width: 100%;
+                  ul {
+                    text-indent: 15px;
+                    li {
+                      position: relative;
+                      text-align: left;
+                      height: 35px;
+                      line-height: 35px;
+                      font-size: 15px;
+                      color: #1a1a1a;
+                      background-color: #fff;
+                      &:after {
+                        position: absolute;
+                        bottom: 0;
+                        left: 15px;
+                        right: 15px;
+                        content: "";
+                        background-color: #ccc;
+                        height: 1px;
+                      }
+                      &:last-child {
+                        &:after {
+                          height: 0;
+                        }
+                      }
+                    }
+                    .uscityname {
+                      &:active {
+                        background-color: #f1f1ed;
+                      }
+                    }
+                    .usstatetitle {
+                      background-color: #ccc;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,84 @@
+<ion-content>
+
+  <div class="back" (click)='navCtrl.pop()'>
+    <img src='assets/ui/backicion.png'>
+  </div>
+  <div class="share" (click)="shareBtnClick()">
+    <img src='assets/ui/shareicon.png'>
+  </div>
+  <ion-slides pager="true" class="mainSlides">
+    <ion-slide *ngFor='let item of info.Images' [ngStyle]="{'background-image':'url('+item.Path+')'}">
+    </ion-slide>
+  </ion-slides>
+
+  <div class="mainTitle">
+    <div class="title">
+      <span>{{info.ProductName}}</span>
+    </div>
+    <div class="price">
+      {{info.Location}}
+    </div>
+    <ion-grid class="supplier">
+      <ion-row>
+        <ion-col col-auto>
+          <img src="assets/ui/supplier.png">
+        </ion-col>
+        <ion-col (click)='goSupplyStore()'>{{info.SupplierName}}</ion-col>
+        <ion-col col-auto>
+          <img src='assets/ui/rigth.png'>
+        </ion-col>
+        <ion-col col-auto class="cddd">|</ion-col>
+        <ion-col col-auto (click)='uesConsult()'>
+          <img src="assets/ui/useblue.png">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-list class="calendarhead">
+    <ion-item (click)='openCalendar()'>
+      <img src="assets/img/tuanqi@2x.png" item-start>
+      <span class="detdatetime">{{today|date:'MM月dd日'}}</span>
+      <span>{{today|date:'EEEE'|toLocaleWeekPipe}}</span>
+      <span>出游</span>
+      <img src='assets/ui/rigth.png' item-end>
+    </ion-item>
+  </ion-list>
+
+  <ion-grid class="priceitem">
+    <div *ngFor='let item of todayQuote.PriceItems'>
+      <ion-row>
+        <ion-col>
+          <p class="title">{{item.Name}}</p>
+        </ion-col>
+        <ion-col col-auto>
+          <p>
+            <span class="symbol">{{info.CurrencyCode|currencySymbolPipe}}</span>
+            <span class="price">{{item.PeerPrice}}</span>
+          </p>
+          <p>
+            <button ion-button color='FF8A00' small (click)='bookingToday()'>预订</button>
+          </p>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+
+  <div class="notice-block">
+    <div *ngIf="info.Recommend">
+      <h5>产品推荐</h5>
+      <p [innerHtml]='info.Recommend'></p>
+    </div>
+    <div *ngIf="info.Description">
+      <h5>景点简介</h5>
+      <p [innerHtml]='info.Description'></p>
+    </div>
+    <div *ngIf="info.BookingNote">
+      <h5>预定须知</h5>
+      <p [innerHtml]='info.BookingNote'></p>
+    </div>
+  </div>
+
+</ion-content>
+
+<social-share [(ngModel)]='isShowShareCpm' [publishType]='info.PublishType' (retail)='retailShare()' (peer)='peerShare()'></social-share>

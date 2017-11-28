@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-navbar color="lightblue">
+    <ion-buttons start>
+      <button ion-button (click)="goUutHome()">
+        <img src="assets/img/uut@2x.png">
+      </button>
+      <button ion-button (click)="goShouKeYu()">
+        <img src="assets/img/shoukeyou@2x.png">
+      </button>
+    </ion-buttons>
+    <ion-title (click)='myShop()'>
+      <img class="withtext" src="assets/img/yousou@2x.png">优搜
+      <ion-icon name="md-arrow-dropdown"></ion-icon>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button>
+        <img class="withtext" src="assets/img/mark3@2x.png">{{localCityName}}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <!-- <div class="ussearchcont">
+    <div class="ussearch">
+      <div (click)='goIndexSearch()' class="usIndexsch">搜索目的地/供应商/门票/酒店/关键词</div>
+      <ion-icon type="button" class="usschbtn" name="ios-search-outline"></ion-icon>
+    </div>
+  </div> -->
+
+  <div class="subheader">
+    <div class="subheader-item">
+      <ion-icon type="button" class="usschbtn" name="ios-search-outline" item-left></ion-icon>
+      <!-- <form action="">
+        <input name='key' autocomplete='off' class="usIndexsch" type="search" placeholder="关键词">
+      </form> -->
+      <div (click)='goIndexSearch()' class="input-block">搜索目的地/供应商/门票/酒店/关键词</div>
+    </div>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col (click)="goLineindex('出境游')">
+        <img src="assets/img/outboundtourism@2x.png">
+        <br>出境游
+      </ion-col>
+      <ion-col (click)="goLineindex('国内游')">
+        <img src="assets/img/inboundtourism@2x.png">
+        <br>国内游
+      </ion-col>
+      <ion-col (click)="goHotelindex()">
+        <img src="assets/img/hotel@2x.png">
+        <br>酒店
+      </ion-col>
+      <ion-col (click)="goTicketindex()">
+        <img src="assets/img/ticket@2x.png">
+        <br>门票
+      </ion-col>
+      <ion-col (click)='goSingle()'>
+        <img src="assets/img/thing@2x.png">
+        <br>单项
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list class="productlist">
+    <ion-list-header>
+      特价产品
+    </ion-list-header>
+
+    <div class="productitem" *ngFor='let item of productList' (click)="goProductDetail(item.ProductType,item.ProductId)">
+      <ion-item>
+        <ion-thumbnail item-start [ngStyle]="{'background-image':'url('+item.ImgUrl+')'}">
+          <img src="assets/ui/taghotel.png" *ngIf="item.ProductType=='酒店'">
+          <img src="assets/ui/tagline.png" *ngIf="item.ProductType=='线路'">
+          <img src="assets/ui/tagticket.png" *ngIf="item.ProductType=='门票'">
+          <img src='assets/ui/tagsingle.png' *ngIf="item.ProductType=='单项'">
+        </ion-thumbnail>
+        <h2>
+          <img src='assets/ui/sale.png' *ngIf='item.IsSale'>
+          <img src='assets/ui/hot.png' *ngIf='item.IsHot'> {{item.ProductName}}
+        </h2>
+        <p>
+          <img src='assets/ui/supplierlight.png'> {{item.SupplierName}}
+        </p>
+        <div class="price">
+          <span class="saleprice" *ngIf='!item.IsSale'>
+            <small>{{item.CurrencyCode|currencySymbolPipe}}</small>{{item.PeerPrice}}</span>
+          <span class="saleprice" *ngIf='item.IsSale'>
+            <small>{{item.CurrencyCode|currencySymbolPipe}}</small>{{item.SalePrice}}</span>
+          <span class="peerprice" *ngIf='item.IsSale'>{{item.CurrencyCode|currencySymbolPipe}}{{item.PeerPrice}}起</span>
+        </div>
+      </ion-item>
+      <div class="countdown" *ngIf='item.IsSale&&item.SaleRestMilliseconds'>
+        <count-down [mseconds]='item.SaleRestMilliseconds'></count-down>
+        <div class="allowance" *ngIf='false'>剩余：2</div>
+      </div>
+    </div>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="isLoad">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <div class="loadending" *ngIf="!isLoad">
+      我是有底线的
+    </div>
+
+  </ion-list>
+
+</ion-content>

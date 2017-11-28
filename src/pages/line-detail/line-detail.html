@@ -1,0 +1,187 @@
+<ion-content>
+
+  <div class="back" (click)='navCtrl.pop()'>
+    <img src='assets/ui/backicion.png'>
+  </div>
+  <div class="share" (click)="shareBtnClick()">
+    <img src='assets/ui/shareicon.png'>
+  </div>
+  <ion-slides pager="false" class="mainSlides">
+    <ion-slide *ngFor='let item of info.Images' [ngStyle]="{'background-image':'url('+item.Path+')'}">
+    </ion-slide>
+  </ion-slides>
+
+  <div class="slidefooter">
+    <img src="assets/img/mark2@2x.png">{{info.DeparturePlace}}出发
+    <count-down *ngIf='info.IsSale&&info.SaleRestMilliseconds' class="time" [mseconds]='info.SaleRestMilliseconds'></count-down>
+  </div>
+
+  <div class="mainTitle">
+    <div class="title">
+      <!-- <img src='assets/ui/hot.png'>
+      <img src='assets/ui/sale.png'> -->
+      <span>{{info.ProductName}}</span>
+    </div>
+    <div class="price">
+      <span class="code">{{info.CurrencyCode|currencySymbolPipe}}</span>
+      <span class="quote">{{info.MinPrice}}</span>/人起
+      <!-- <span class="oldquote">{{info.CurrencyCode|currencySymbolPipe}}{{info.RetailPrice}}起</span> -->
+    </div>
+    <ion-grid class="supplier">
+      <ion-row>
+        <ion-col col-auto>
+          <img src="assets/ui/supplier.png">
+        </ion-col>
+        <ion-col (click)='goSupplyStore()'>{{info.SupplierName}}</ion-col>
+        <ion-col col-auto>
+          <img src='assets/ui/rigth.png'>
+        </ion-col>
+        <ion-col col-auto class="cddd">|</ion-col>
+        <ion-col col-auto (click)='uesConsult()'>
+          <img src="assets/ui/useblue.png">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+  <ion-grid class="scroll-daylist">
+    <ion-row>
+      <ion-col col-1>
+        <img src="assets/img/tuanqi@2x.png" alt="">
+      </ion-col>
+      <ion-col>团期|价格</ion-col>
+    </ion-row>
+    <ion-row class="content">
+      <ion-col>
+        <ion-scroll scrollX="true" class="crosswise">
+          <div class="crosswiseitem" *ngFor='let item of info.UseDates' (click)="booking(item)">
+            <span>{{item.Date|date:'MM/dd'}}{{item.Date|date:'EEEE'|toLocaleWeekPipe}}</span>
+            <p>
+              <small>{{info.CurrencyCode|currencySymbolPipe}}</small>{{item.MinPrice}}</p>
+          </div>
+        </ion-scroll>
+      </ion-col>
+      <ion-col class="more" col-1 (click)='openCalendar()'>
+        更多团期
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="segment-block">
+    <ion-segment [(ngModel)]="lineModel" color='lightblue'>
+      <ion-segment-button class="ussegmenttab" value="lineCharacteristic">
+        特点
+      </ion-segment-button>
+      <ion-segment-button class="ussegmenttab" value="triptab">
+        行程
+      </ion-segment-button>
+      <ion-segment-button class="ussegmenttab" value="noticetap">
+        须知
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div class="segment-item-block" [ngSwitch]="lineModel">
+
+    <ion-list class="segment-rec" *ngSwitchCase="'lineCharacteristic'">
+      <p [innerHtml]='info.Recommend'></p>
+    </ion-list>
+
+    <ion-list class="segment-trip" *ngSwitchCase="'triptab'">
+
+      <div class="trip" *ngFor='let item of info.DayTrips'>
+
+        <div class="day">
+          第{{item.Day}}天
+        </div>
+
+        <div class="traffic">
+          {{item.DeparturePlace}}
+          <span *ngFor='let tg of item.ArrivalGroups'>
+            <img [src]='tg.TrafficWay|trafficToolsPipe' [alt]="tg.TrafficWay">{{tg.Destination}}
+          </span>
+        </div>
+
+        <div class="des" [innerHtml]='item.Description'></div>
+
+        <div class="trip-item" *ngFor='let it of item.Items'>
+          <p class="trip-style">
+            <img [src]='it.TripStyle|trafficToolsPipe' [alt]="it.TripStyle">
+            <span>{{it.StartTime?it.StartTime:it.Name}}</span>
+          </p>
+          <p *ngIf='it.StartTime' class="trip-style title">
+            <span>{{it.Name}}</span>
+          </p>
+          <p class="trip-style title">
+            <span>{{it.OthersContent}}</span>
+          </p>
+          <div class="oth">{{it.TripDescription}}</div>
+          <div class="img-list">
+            <img *ngFor='let img of it.Images' [src]='img.Path'>
+          </div>
+        </div>
+
+      </div>
+
+    </ion-list>
+
+    <ion-list class="segment-notice" *ngSwitchCase="'noticetap'">
+
+      <div *ngIf='info.PriceIncluded'>
+        <h5>费用包含</h5>
+        <p [innerHtml]='info.PriceIncluded'></p>
+      </div>
+
+      <div *ngIf='info.PriceExcluded'>
+        <h5>费用不含</h5>
+        <p [innerHtml]='info.PriceExcluded'></p>
+      </div>
+
+      <div *ngIf='info.PriceChildrenRemark'>
+        <h5>儿童说明</h5>
+        <p [innerHtml]='info.PriceChildrenRemark'></p>
+      </div>
+
+      <div *ngIf='info.PriceOtherPeopleRemark'>
+        <h5>其他人群</h5>
+        <p [innerHtml]='info.PriceOtherPeopleRemark'></p>
+      </div>
+
+      <div *ngIf='info.NoticeTeam'>
+        <h5>出团须知</h5>
+        <p [innerHtml]='info.NoticeTeam'></p>
+      </div>
+
+      <div *ngIf='info.NoticeCustomer'>
+        <h5>客人须知</h5>
+        <p [innerHtml]='info.NoticeCustomer'></p>
+      </div>
+
+      <div *ngIf='info.NoticeTour'>
+        <h5>旅游须知</h5>
+        <p [innerHtml]='info.NoticeTour'></p>
+      </div>
+
+      <div *ngIf='info.VisaRemark'>
+        <h5>签证说明</h5>
+        <p [innerHtml]='info.VisaRemark'></p>
+      </div>
+
+      <div *ngIf='info.OtherReceiveLimit'>
+        <h5>收客限制</h5>
+        <p [innerHtml]='info.OtherReceiveLimit'></p>
+      </div>
+
+      <div *ngIf='info.OtherRemark'>
+        <h5>其他说明</h5>
+        <p [innerHtml]='info.OtherRemark'></p>
+      </div>
+
+    </ion-list>
+
+  </div>
+
+</ion-content>
+
+<social-share [(ngModel)]='isShowShareCpm' [publishType]='info.PublishType' (retail)='retailShare()' (peer)='peerShare()'></social-share>

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>选择发票信息</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="add()" color="primary">新增</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-item-sliding *ngFor='let item of invoiceList'>
+      <button ion-item (click)="choice(item)">
+        <p class="title">{{item.Title}}</p>
+        <p>纳税号：{{item.TaxpayerId}}</p>
+        <p>地址：{{item.Address}}</p>
+        <p>电话：{{item.PhoneNumber}}</p>
+        <p>开户行：{{item.BankName}}</p>
+        <p>账号：{{item.BankAccount}}</p>
+        <ion-note item-end></ion-note>
+      </button>
+      <ion-item-options>
+        <button ion-button color="lightblue" (click)="edit(item)">编辑</button>
+        <button ion-button color="danger" (click)="delete(item)">删除</button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+</ion-content>

@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      出发城市
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="history">
+    <div class="his-title">
+      <span>搜索历史</span>
+      <ion-icon item-end name="ios-trash-outline" (click)='clearHistory()'></ion-icon>
+    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button *ngFor='let item of setOutCityHis' (click)='selectCity(item)' ion-button small color='light'>{{item}}</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="ustabbox">
+    <div class="usstartcity">
+      <div class="uslefttab">
+        <ul>
+          <li class="uslefttabbtn usnowrap" (click)="tabvalue=0" [ngClass]="{cityactive:tabvalue==0}">热门</li>
+          <li class="uslefttabbtn usnowrap" *ngFor='let item of area' (click)="tabvalue=item.Id" [ngClass]="{cityactive:tabvalue==item.Id}">{{item.Name}}</li>
+        </ul>
+      </div>
+      <div class="usrighttabcont">
+        <ul class="usrightcontul">
+          <li class="usrightcontullist hotcicty">
+            <ul class="searchul" *ngIf="tabvalue==0">
+              <li *ngFor='let h of hotCity' (click)='selectCity(h.Name)'>{{h.Name}}</li>
+              <div class="clear"></div>
+            </ul>
+          </li>
+          <li class="usrightcontullist" *ngFor='let item of area'>
+            <ul class="usStateul" *ngIf="tabvalue==item.Id">
+              <li class="usStatelist">
+                <ul>
+                  <li class="uscityname usnowrap" *ngFor='let c of item.Items' (click)='selectCity(c.Name)'>{{c.Name}}</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+</ion-content>

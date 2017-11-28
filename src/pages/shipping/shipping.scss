@@ -1,0 +1,61 @@
+page-shipping {
+  ion-content {
+    .scroll-content {
+      background-color: #F6F5FA;
+      padding-top: 8px;
+      .grid {
+        color: #4c4c4c;
+        .row {
+          background-color: #fff;
+          margin-bottom: 8px;
+          .col {
+            h6 {
+              margin-top: 10px;
+            }
+            .operation {
+              text-align: right;
+              padding: 5px 0px;
+              img {
+                width: 16px;
+                position: relative;
+                top: 3px;
+                margin-right: 4px;
+              }
+              .radio-ios .radio-checked .radio-inner {
+                top: 3px;
+              }
+              .radio-ios-titleStyle .radio-checked .radio-inner {
+                border-color: #fff;
+              }
+              .radio-ios-titleStyle .radio-checked {
+                border-radius: 50%;
+                background-color: #00a9fa;
+              }
+              .radio-ios .radio-icon {
+                width: 21px;
+                height: 21px;
+                border: 1px solid #00a9fa;
+                border-radius: 50%;
+              }
+              .default {
+                float: left;
+                .radio {
+                  position: relative;
+                  top: 3.5px;
+                  margin-right: 5px;
+                }
+              }
+            }
+            span {
+              margin-right: 20px;
+            }
+            .add {
+              border-bottom: 0.5px solid #ddd;
+              padding-bottom: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,156 @@
+page-line-detail {
+  .scroll-content {
+    background-color: #F6F5FA;
+    .slidefooter {
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      overflow: hidden;
+      position: absolute;
+      top: 184px;
+      z-index: 22;
+      height: 36px;
+      padding: 7px;
+      width: 100%;
+      left: 0;
+      right: 0;
+      img {
+        width: 15px;
+        position: relative;
+        top: 3px;
+        margin-right: 8px;
+      }
+      .time {
+        float: right;
+      }
+    }
+    .scroll-daylist {
+      background-color: #fff;
+      margin: 8px 0px;
+      img {
+        width: 18px;
+        margin-left: 6px;
+      }
+      .content {
+        .col {
+          padding: 0px;
+          text-align: left;
+          .scroll-content {
+            background-color: #fff;
+          }
+        }
+        .more {
+          font-size: 10px;
+          padding-top: 3px;
+          color: #05ACFB;
+          line-height: 150%;
+          width: 30px;
+        }
+        .crosswise {
+          height: 55px;
+          white-space: nowrap;
+          .crosswiseitem {
+            height: 45px;
+            width: 68px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            display: inline-block;
+            margin-right: 5px;
+            padding-top: 4px;
+            p {
+              color: #EF8338;
+              small {
+                font-size: 6px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .segment-item-block {
+      .segment-rec {
+        background-color: #fff;
+        padding: 8px;
+        margin-top: 8px;
+      }
+      .segment-notice {
+        background-color: #fff;
+        padding: 8px;
+        margin-top: 8px;
+        div {
+          border-bottom: 0.5px solid #ddd;
+          padding-bottom: 20px;
+          h5 {
+            text-align: center;
+            color: #1B1B1B;
+          }
+          p {
+            color: #5E5E5E;
+          }
+        }
+      }
+      .segment-trip {
+        margin-top: 8px;
+        .trip {
+          background-color: #fff;
+          padding: 0px 8px 8px;
+          margin-bottom: 8px;
+          .day {
+            background-color: #00A9FA;
+            color: #fff;
+            font-size: 15px;
+            width: 90px;
+            height: 30px;
+            border-radius: 0px 0px 6px 6px;
+            line-height: 30px;
+            position: relative;
+            left: 50%;
+            margin-left: -45px;
+            text-align: center;
+            margin-bottom: 8px;
+          }
+          .traffic {
+            font-size: 18px;
+            font-weight: 500;
+            text-align: center;
+            margin-top: 25px;
+            margin-bottom: 20px;
+            img {
+              width: 18px;
+              margin-left: 5px;
+              margin-right: 5px;
+              position: relative;
+              top: 3px;
+            }
+          }
+          .des {
+            border-bottom: 0.5px solid #ddd;
+            padding-bottom: 14px;
+            margin-bottom: 14px;
+          }
+          .trip-item {
+            .trip-style {
+              img {
+                width: 20px;
+                position: relative;
+                top: 4px;
+              }
+              span {
+                margin-right: 15px;
+              }
+            }
+            .title {
+              padding-left: 20px;
+            }
+            .oth {
+              padding: 16px 0px 16px 25px;
+              color: #A2A2A2;
+              font-size: 12px;
+              letter-spacing: 0.8px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

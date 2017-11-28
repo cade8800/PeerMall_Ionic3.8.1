@@ -1,0 +1,13 @@
+<ion-grid>
+  <ion-row>
+    <ion-col class="leftcol">
+      <ion-icon class="add" name="md-remove" (click)='decrement()'></ion-icon>
+    </ion-col>
+    <ion-col class="inputcol">
+      <ion-input (keyup)='keyup()' type="text" [(ngModel)]='counterValue'></ion-input>
+    </ion-col>
+    <ion-col class="rightcol">
+      <ion-icon class="min" name="md-add" (click)='increment()'></ion-icon>
+    </ion-col>
+  </ion-row>
+</ion-grid>

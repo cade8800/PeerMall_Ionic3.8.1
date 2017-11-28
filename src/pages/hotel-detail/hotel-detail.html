@@ -1,0 +1,105 @@
+<ion-content>
+  <div class="back" (click)='navCtrl.pop()'>
+    <img src='assets/ui/backicion.png'>
+  </div>
+  <div class="share" (click)="shareBtnClick()">
+    <img src='assets/ui/shareicon.png'>
+  </div>
+  <ion-slides pager="true" class="mainSlides">
+    <ion-slide *ngFor='let item of info.Images' [ngStyle]="{'background-image':'url('+item.Path+')'}">
+    </ion-slide>
+  </ion-slides>
+
+  <div class="mainTitle">
+    <div class="title">
+      <span>{{info.ProductName}}</span>
+    </div>
+    <div class="price">
+      {{info.Location}}
+    </div>
+    <ion-grid class="supplier">
+      <ion-row>
+        <ion-col col-auto>
+          <img src="assets/ui/supplier.png">
+        </ion-col>
+        <ion-col (click)='goSupplyStore()'>{{info.SupplierName}}</ion-col>
+        <ion-col col-auto>
+          <img src='assets/ui/rigth.png'>
+        </ion-col>
+        <ion-col col-auto class="cddd">|</ion-col>
+        <ion-col col-auto (click)='uesConsult()'>
+          <img src="assets/ui/useblue.png">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-list class="calendarhead">
+    <ion-item (click)='openCalendar()'>
+      <img src="assets/img/tuanqi@2x.png" item-start>
+      <span>
+        {{startDay|date:'MM月dd日'}} {{startDay|date:'EEEE'|toLocaleWeekPipe}} 入住
+      </span> |
+      <span>
+        {{endDay|date:'MM月dd日'}} {{endDay|date:'EEEE'|toLocaleWeekPipe}} 退房
+      </span>
+      <span>共{{diffDayCut}}晚</span>
+      <img src='assets/ui/rigth.png' item-end>
+      <!-- <ion-icon name="ios-arrow-forward-outline" color='888888' item-end></ion-icon> -->
+    </ion-item>
+  </ion-list>
+
+  <ion-grid class="priceitem">
+    <div *ngFor='let item of input.OrderProductListInput[0].OrderProductDateListInput[0].OrderProductDateQuoteListInput'>
+      <ion-row>
+        <ion-col>
+          <p class="title">{{item.name}}</p>
+        </ion-col>
+        <ion-col col-auto>
+          <p>
+            <span class="symbol">{{item.currency|currencySymbolPipe}}</span>
+            <span class="price">{{item.price}}</span>
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p class="remain">{{item.remainingSeats}}</p>
+        </ion-col>
+        <ion-col col-auto>
+          <p>
+            <button ion-button color='FF8A00' small (click)='booking()'>预订</button>
+          </p>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+
+
+  <div class="notice-block">
+    <div *ngIf='info.Recommend'>
+      <h5>产品推荐</h5>
+      <p [innerHtml]='info.Recommend'></p>
+    </div>
+    <div *ngIf='info.BookingNote'>
+      <h5>预订须知</h5>
+      <p [innerHtml]='info.BookingNote'></p>
+    </div>
+    <div>
+      <h5>酒店简介</h5>
+      <p [innerHtml]='info.HotelBaseInfo'></p>
+      <p [innerHtml]='info.HotelCancelPolicy'></p>
+      <p [innerHtml]='info.HotelCheckIn'></p>
+    </div>
+    <div>
+      <h5>设施服务</h5>
+      <p [innerHtml]='info.HouseFacility'></p>
+      <p [innerHtml]='info.ParkingService'></p>
+      <p [innerHtml]='info.RepastFacility'></p>
+      <p [innerHtml]='info.Entertainment'></p>
+    </div>
+  </div>
+
+</ion-content>
+
+<social-share [(ngModel)]='isShowShareCpm' [publishType]='info.PublishType' (retail)='retailShare()' (peer)='peerShare()'></social-share>

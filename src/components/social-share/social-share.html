@@ -1,0 +1,29 @@
+<div class="content" *ngIf='show' (click)='cancelShare()'>
+
+  <ion-grid>
+    <ion-row class="bdbottom" (click)='sharePeer()'>
+      <ion-col col-auto>
+        <img src="assets/ui/share-peer.png">
+      </ion-col>
+      <ion-col align-self-center>转发给同行</ion-col>
+      <ion-col col-auto>
+        <img class="rightImg" src="assets/ui/share-right.png">
+      </ion-col>
+    </ion-row>
+    <ion-row (click)='shareRetail()'>
+      <ion-col col-auto>
+        <img src="assets/ui/share-retail.png">
+      </ion-col>
+      <ion-col align-self-center>转发给游客</ion-col>
+      <ion-col col-auto>
+        <img *ngIf='publishType!=1' class="rightImg" src="assets/ui/share-right.png">
+        <img *ngIf='publishType==1' class="rightImg" src="assets/ui/share-lock.png">
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf='publishType==1'>
+      <ion-col class="note">产品不支持转发给游客</ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</div>

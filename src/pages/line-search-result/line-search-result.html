@@ -1,0 +1,183 @@
+<ion-header>
+  <ion-navbar color="lightblue">
+    <ion-title>
+      线路
+    </ion-title>
+  </ion-navbar>
+
+  <div class="subheader">
+    <div class="subheader-item">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-auto>
+            <img src="assets/img/markmark@2x.png">
+          </ion-col>
+          <ion-col col-auto (click)='setOutCity()'>
+            <p class="singlerow" *ngIf='departureCity'>{{departureCity}}出发</p>
+          </ion-col>
+          <ion-col (click)="arriveAtCity()">
+            <ion-icon type="button" class="usschbtn" name="ios-search-outline" item-left></ion-icon>
+            <form action="">
+              <!-- <input name='key' type="text" placeholder="关键词" [(ngModel)]='key'> -->
+              <div class="input-block">{{key?key:'关键词'}}</div>
+            </form>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
+  <ion-grid class="screening-block">
+    <ion-row>
+      <ion-col (click)="isSortToggle()" [ngClass]="{togglescreening:isSort}">
+        <span>默认排序
+          <ion-icon name="md-arrow-dropdown"></ion-icon>
+        </span>
+      </ion-col>
+      <ion-col (click)="isScreenToggle()" [ngClass]="{togglescreening:isScreen}">
+        <span>筛选
+          <ion-icon name="md-arrow-dropdown"></ion-icon>
+        </span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="screening-item" *ngIf='isSort'>
+    <ul class="usSortul" radio-group [(ngModel)]="SortModel" (ionChange)='sortChange()'>
+      <li class="usSortList">
+        <ion-item>
+          <ion-radio checked value="0"></ion-radio>
+          <ion-label>综合排序</ion-label>
+        </ion-item>
+      </li>
+      <li class="usSortList">
+        <ion-item>
+          <ion-radio value="5"></ion-radio>
+          <ion-label>价格从低到高</ion-label>
+        </ion-item>
+      </li>
+      <li class="usSortList">
+        <ion-item>
+          <ion-radio value="6"></ion-radio>
+          <ion-label>价格从高到低</ion-label>
+        </ion-item>
+      </li>
+    </ul>
+  </div>
+
+
+  <div class="screening-item" *ngIf='isScreen'>
+    <div class="screencont">
+      <p class="screenconttext">出游天数</p>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <span class="usscreentips" (click)="travelDay=0" [ngClass]="{spanactive:travelDay=='0'}">不限</span>
+          </ion-col>
+          <ion-col col-3>
+            <span class="usscreentips" (click)="travelDay=1" [ngClass]="{spanactive:travelDay=='1'}">1天</span>
+          </ion-col>
+          <ion-col col-3>
+            <span class="usscreentips" (click)="travelDay=2" [ngClass]="{spanactive:travelDay=='2'}">2天</span>
+          </ion-col>
+          <ion-col col-3>
+            <span class="usscreentips" (click)="travelDay=3" [ngClass]="{spanactive:travelDay=='3'}">3天</span>
+          </ion-col>
+          <ion-col col-3>
+            <span class="usscreentips" (click)="travelDay=4" [ngClass]="{spanactive:travelDay=='4'}">4天</span>
+          </ion-col>
+          <ion-col col-3>
+            <span class="usscreentips" (click)="travelDay=5" [ngClass]="{spanactive:travelDay=='5'}">5天</span>
+          </ion-col>
+          <ion-col col-3>
+            <span class="usscreentips" (click)="travelDay=6" [ngClass]="{spanactive:travelDay=='6'}">6天</span>
+          </ion-col>
+          <ion-col col-3>
+            <span class="usscreentips" (click)="travelDay=7" [ngClass]="{spanactive:travelDay=='7'}">7天</span>
+          </ion-col>
+          <ion-col col-3>
+            <span class="usscreentips" (click)="travelDay=8" [ngClass]="{spanactive:travelDay=='8'}">8天</span>
+          </ion-col>
+          <ion-col col-3>
+            <span class="usscreentips" (click)="travelDay=9" [ngClass]="{spanactive:travelDay=='9'}">9天</span>
+          </ion-col>
+          <ion-col col-3>
+            <span class="usscreentips" (click)="travelDay=10" [ngClass]="{spanactive:travelDay=='10'}">10天</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="screencont" style="display:none;">
+      <p class="screenconttext">途径地</p>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <span class="usscreentips" (click)="index2=1" [ngClass]="{spanactive:index2=='1'}">美国</span>
+          </ion-col>
+          <ion-col col-3>
+            <span class="usscreentips" (click)="index2=2" [ngClass]="{spanactive:index2=='2'}">塞班岛</span>
+          </ion-col>
+          <ion-col col-3>
+            <span class="usscreentips" (click)="index2=6" [ngClass]="{spanactive:index2=='6'}">蜜月游</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="screencont">
+      <p class="screenconttext">主题</p>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <span class="usscreentips" (click)="theme=0;setThemes();" [ngClass]="{spanactive:theme=='0'}">不限</span>
+          </ion-col>
+          <ion-col col-3 *ngFor='let item of themes'>
+            <span class="usscreentips" (click)="theme=item.Id;setThemes(item.DicName);" [ngClass]="{spanactive:theme==item.Id}">{{item.DicName}}</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="usscreenbtn">
+      <ul class="usbtnul">
+        <li class="usbtnli" (click)='resetParam(true)'>重置</li>
+        <li class="ussavebtn" (click)='submitSearch()'>确定</li>
+        <div class="clear"></div>
+      </ul>
+    </div>
+  </div>
+
+</ion-header>
+
+<ion-content>
+
+  <div class="mask-block" (click)='closeScreeningItem()' *ngIf='isSort||isScreen'></div>
+
+  <ion-list class="productlist">
+    <div class="productitem" *ngFor='let item of productList' (click)="goLineDetail(item.ProductId)">
+      <ion-item>
+        <ion-thumbnail item-start [ngStyle]="{'background-image':'url('+item.ImgUrl+')'}">
+        </ion-thumbnail>
+        <h2>
+          <img src='assets/ui/sale.png' *ngIf='item.IsSale'>
+          <img src='assets/ui/hot.png' *ngIf='item.IsHot'> {{item.ProductName}}
+        </h2>
+        <p>
+          <img src='assets/ui/supplierlight.png'> {{item.SupplierName}}
+        </p>
+        <div class="price">
+          <span class="saleprice" *ngIf='!item.IsSale'>
+            <small>{{item.CurrencyCode|currencySymbolPipe}}</small>{{item.PeerPrice}}</span>
+          <span class="saleprice" *ngIf='item.IsSale'>
+            <small>{{item.CurrencyCode|currencySymbolPipe}}</small>{{item.SalePrice}}</span>
+          <span class="peerprice" *ngIf='item.IsSale'>{{item.CurrencyCode|currencySymbolPipe}}{{item.PeerPrice}}起</span>
+        </div>
+      </ion-item>
+    </div>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="isLoad">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <div class="loadending" *ngIf="!isLoad">
+      我是有底线的
+    </div>
+  </ion-list>
+
+</ion-content>

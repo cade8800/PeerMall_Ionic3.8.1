@@ -1,0 +1,134 @@
+<ion-header>
+
+  <ion-navbar color="lightblue">
+    <ion-buttons start>
+      <button ion-button (click)="goUutHome()">
+        <img src="assets/img/uut@2x.png">
+      </button>
+      <button ion-button (click)="goShouKeYu()">
+        <img src="assets/img/shoukeyou@2x.png">
+      </button>
+    </ion-buttons>
+    <ion-title>
+      供应商
+    </ion-title>
+  </ion-navbar>
+
+  <div class="subheader">
+    <div class="subheader-item">
+      <ion-icon type="button" class="usschbtn" name="ios-search-outline" item-left></ion-icon>
+      <form action="">
+        <input name='key' autocomplete='off' [(ngModel)]='param.keyWord' class="usIndexsch" type="search" (keypress)='keySelect($event)'
+          placeholder="关键词">
+      </form>
+    </div>
+  </div>
+
+  <ion-grid class="screening-block">
+    <ion-row>
+      <ion-col (click)="isSortToggle()" [ngClass]="{togglescreening:isSort}">
+        <span>{{SortModel}}
+          <ion-icon name="md-arrow-dropdown"></ion-icon>
+        </span>
+      </ion-col>
+      <ion-col (click)="isScreenToggle()" [ngClass]="{togglescreening:isScreen}">
+        <span>筛选
+          <ion-icon name="md-arrow-dropdown"></ion-icon>
+        </span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="screening-item" *ngIf='isSort'>
+    <ul class="usSortul" radio-group [(ngModel)]="param.relationState" (ionChange)='sortChange()'>
+      <li class="usSortList">
+        <ion-item>
+          <ion-radio checked value="1"></ion-radio>
+          <ion-label>我的供应商</ion-label>
+        </ion-item>
+      </li>
+      <li class="usSortList">
+        <ion-item>
+          <ion-radio value="3"></ion-radio>
+          <ion-label>全部供应商</ion-label>
+        </ion-item>
+      </li>
+    </ul>
+  </div>
+
+  <div class="screening-item" *ngIf='isScreen'>
+    <div class="screencont">
+      <p class="screenconttext">业务类型</p>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <span class="usscreentips" (click)="priceType=0;selectedBusinessType('不限')" [ngClass]="{spanactive:priceType==0}">不限</span>
+          </ion-col>
+          <ion-col col-3 *ngFor='let item of sType'>
+            <span class="usscreentips" (click)="priceType=item.Id;selectedBusinessType(item.DicName)" [ngClass]="{spanactive:priceType==item.Id}">
+              {{item.DicName}}
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="usscreenbtn">
+      <ul class="usbtnul">
+        <li class="usbtnli" (click)="resetBusinessType()">重置</li>
+        <li class="ussavebtn" (click)='submitSearch()'>确定</li>
+        <div class="clear"></div>
+      </ul>
+    </div>
+  </div>
+
+</ion-header>
+
+<ion-content>
+
+  <div class="mask-block" (click)='closeScreeningItem()' *ngIf='isSort||isScreen'></div>
+
+  <div class="listconent">
+
+    <ion-list class="listbody">
+
+      <div class="supplieritem" *ngFor='let item of supplierList'>
+        <ion-item>
+          <ion-thumbnail item-start (click)='goSupplyStore(item.SupplierId,item.RelationState)' [ngStyle]="{'background-image':'url('+item.ImgUri+')'}">
+          </ion-thumbnail>
+          <h3 (click)='goSupplyStore(item.SupplierId,item.RelationState)'>{{item.SupplierName}}</h3>
+          <p (click)='goSupplyStore(item.SupplierId,item.RelationState)' *ngIf='item.BizAreas'>业务区域:{{item.BizAreas}}</p>
+          <span *ngIf='item.RelationState==1' class="itemend" item-end>
+            <img src='assets/ui/accepted.png'>
+          </span>
+          <span *ngIf='item.RelationState==2' class="itemend" item-end (click)='toBuildRelationship(item.SupplierId)'>+建关系</span>
+        </ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col *ngIf='item.ContactQQ'>
+              <a target="_blank" [href]="'http://wpa.qq.com/msgrd?v=3&site=qq&menu=yes&uin='+item.ContactQQ">
+                <img src="assets/ui/qq.png">QQ咨询
+              </a>
+            </ion-col>
+            <ion-col *ngIf="item.ContactUserId" (click)='uesChat(item.ContactUserId)'>
+              <img src="assets/ui/ues.png">优信咨询</ion-col>
+            <ion-col *ngIf='item.ContactPhone'>
+              <a [href]="'tel:'+item.ContactPhone">
+                <img src="assets/ui/phone.png">电话咨询</a>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="isLoad">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+
+      <div class="loadallpro" *ngIf="!isLoad">我是有底线的</div>
+
+    </ion-list>
+
+
+
+  </div>
+
+</ion-content>

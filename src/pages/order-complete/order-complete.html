@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>预定成功</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="complete">
+    <img src="assets/img/success@2x.png">
+    <h5>预定成功！</h5>
+    <button ion-button block color='FF8201' (click)='goHome()'>返回首页</button>
+  </div>
+
+  <ion-list class="productlist">
+    <div class="productitem" *ngFor='let item of productList' (click)="goProductDetail(item.ProductType,item.ProductId)">
+      <ion-item>
+        <ion-thumbnail item-start [ngStyle]="{'background-image':'url('+item.ImgUrl+')'}">
+          <img src="assets/ui/taghotel.png" *ngIf="item.ProductType=='酒店'">
+          <img src="assets/ui/tagline.png" *ngIf="item.ProductType=='线路'">
+          <img src="assets/ui/tagticket.png" *ngIf="item.ProductType=='门票'">
+          <img src='assets/ui/tagsingle.png' *ngIf="item.ProductType=='单项'">
+        </ion-thumbnail>
+        <h2>
+          <img src='assets/ui/sale.png' *ngIf='item.IsSale'>
+          <img src='assets/ui/hot.png' *ngIf='item.IsHot'> {{item.ProductName}}
+        </h2>
+        <p>
+          <img src='assets/ui/supplierlight.png'> {{item.SupplierName}}
+        </p>
+        <div class="price">
+          <span class="saleprice" *ngIf='!item.IsSale'>
+            <small>{{item.CurrencyCode|currencySymbolPipe}}</small>{{item.PeerPrice}}</span>
+          <span class="saleprice" *ngIf='item.IsSale'>
+            <small>{{item.CurrencyCode|currencySymbolPipe}}</small>{{item.SalePrice}}</span>
+          <span class="peerprice" *ngIf='item.IsSale'>{{item.CurrencyCode|currencySymbolPipe}}{{item.PeerPrice}}起</span>
+        </div>
+      </ion-item>
+      <div class="countdown" *ngIf='item.IsSale&&item.SaleRestMilliseconds'>
+        <count-down [mseconds]='item.SaleRestMilliseconds'></count-down>
+        <div class="allowance" *ngIf='false'>剩余：2</div>
+      </div>
+    </div>
+  </ion-list>
+
+
+
+</ion-content>

@@ -1,0 +1,74 @@
+page-visitor {
+  .scroll-content {
+    background-color: #F6F5FA;
+    .ustouristselectul {
+      background: #fff;
+      clear: both;
+      width: 100%;
+      margin-top: 8px;
+      .touristinlist {
+        position: relative;
+        width: 100%;
+        border-bottom: 1px solid #eee;
+        height: 71px;
+        &:last-child {
+          border: 0;
+        }
+        .usisSelecttour {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 45px;
+          padding-left: 15px;
+          height: 100%;
+          color: #ccc;
+          line-height: 71px;
+          ion-icon {
+            font-size: 24px;
+            line-height: 70px;
+          }
+        }
+        .touredit {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 45px;
+          height: 100%;
+          .usiconbox {
+            float: left;
+            margin-top: 29px;
+            width: 18px;
+          }
+        }
+        .ustourvisible {
+          width: 100%;
+          padding: 0 45px;
+          height: 100%;
+          .ustourname {
+            padding-top: 15px;
+            height: 50%;
+            width: 100%;
+            font-size: 15px;
+            color: #1a1a1a;
+          }
+          .ustourid {
+            line-height: 35.5px;
+            height: 50%;
+            width: 100%;
+            font-size: 14px;
+            color: #ededed;
+          }
+        }
+      }
+      .ustourselected {
+        .usisSelecttour {
+          color: #42b9ff!important;
+        }
+      }
+    }
+  }
+  .mainFooter {
+    background-color: #F6F5FA;
+    padding: 3px 12px;
+  }
+}

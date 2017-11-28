@@ -1,0 +1,43 @@
+social-share {
+  .content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 30;
+    .grid {
+      position: absolute;
+      left: 50%;
+      background-color: #fff;
+      z-index: 31;
+      width: 190px;
+      margin-left: -95px;
+      top: 50%;
+      margin-top: -64px;
+      border-radius: 10px;
+      padding: 10px 15px;
+      .row {
+        .col {
+          text-align: center;
+          img {
+            max-width: 30px;
+          }
+          .rightImg {
+            height: 20px;
+            position: relative;
+            top: 7px;
+          }
+        }
+        .col.note {
+          padding: 0;
+          color: #ddd;
+        }
+      }
+      .row.bdbottom {
+        border-bottom: 0.5px dashed #ddd;
+      }
+    }
+  }
+}

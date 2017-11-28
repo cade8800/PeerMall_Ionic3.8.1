@@ -1,0 +1,115 @@
+<ion-header>
+
+  <ion-navbar color="lightblue">
+    <ion-title>
+      单项产品
+    </ion-title>
+  </ion-navbar>
+
+  <div class="subheader">
+    <div class="subheader-item">
+      <ion-icon type="button" class="usschbtn" name="ios-search-outline" item-left></ion-icon>
+      <form action="">
+        <input name='key' [(ngModel)]='key' class="usIndexsch" type="search" (keypress)='keySelect($event)' placeholder="关键词">
+      </form>
+    </div>
+  </div>
+
+  <ion-grid class="screening-block">
+    <ion-row>
+      <ion-col (click)="isSortToggle()" [ngClass]="{togglescreening:isSort}">
+        <span>默认排序
+          <ion-icon name="md-arrow-dropdown"></ion-icon>
+        </span>
+      </ion-col>
+      <ion-col (click)="isScreenToggle()" [ngClass]="{togglescreening:isScreen}">
+        <span>筛选
+          <ion-icon name="md-arrow-dropdown"></ion-icon>
+        </span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="screening-item" *ngIf='isSort'>
+    <ul class="usSortul" radio-group [(ngModel)]="SortModel" (ionChange)='sortChange()'>
+      <li class="usSortList">
+        <ion-item>
+          <ion-radio checked value="0"></ion-radio>
+          <ion-label>综合排序</ion-label>
+        </ion-item>
+      </li>
+      <li class="usSortList">
+        <ion-item>
+          <ion-radio value="5"></ion-radio>
+          <ion-label>价格从低到高</ion-label>
+        </ion-item>
+      </li>
+      <li class="usSortList">
+        <ion-item>
+          <ion-radio value="6"></ion-radio>
+          <ion-label>价格从高到低</ion-label>
+        </ion-item>
+      </li>
+    </ul>
+  </div>
+
+  <div class="screening-item" *ngIf='isScreen'>
+    <div class="screencont">
+      <p class="screenconttext">类别</p>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <span class="usscreentips" (click)="priceType=0" [ngClass]="{spanactive:priceType==0}">不限</span>
+          </ion-col>
+          <ion-col col-3 *ngFor='let item of subTypes;let i=index;'>
+            <span class="usscreentips" (click)="priceType=i+1;selectedSubType=item" [ngClass]="{spanactive:priceType==i+1}">{{item}}</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="usscreenbtn">
+      <ul class="usbtnul">
+        <li class="usbtnli" (click)="resetParam(true)">重置</li>
+        <li class="ussavebtn" (click)='submitSearch()'>确定</li>
+        <div class="clear"></div>
+      </ul>
+    </div>
+  </div>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div class="mask-block" (click)='closeScreeningItem()' *ngIf='isSort||isScreen'></div>
+
+  <ion-list class="productlist">
+    <div class="productitem" *ngFor='let item of productList' (click)="goProductDetail(item.ProductId)">
+      <ion-item>
+        <ion-thumbnail item-start [ngStyle]="{'background-image':'url('+item.ImgUrl+')'}">
+        </ion-thumbnail>
+        <h2>
+          <img src='assets/ui/sale.png' *ngIf='item.IsSale'>
+          <img src='assets/ui/hot.png' *ngIf='item.IsHot'> {{item.ProductName}}
+        </h2>
+        <p>
+          <img src='assets/ui/supplierlight.png'> {{item.SupplierName}}
+        </p>
+        <div class="price">
+          <span class="saleprice" *ngIf='!item.IsSale'>
+            <small>{{item.CurrencyCode|currencySymbolPipe}}</small>{{item.PeerPrice}}</span>
+          <span class="saleprice" *ngIf='item.IsSale'>
+            <small>{{item.CurrencyCode|currencySymbolPipe}}</small>{{item.SalePrice}}</span>
+          <span class="peerprice" *ngIf='item.IsSale'>{{item.CurrencyCode|currencySymbolPipe}}{{item.PeerPrice}}起</span>
+        </div>
+      </ion-item>
+    </div>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="isLoad">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <div class="loadending" *ngIf="!isLoad">
+      我是有底线的
+    </div>
+  </ion-list>
+
+</ion-content>

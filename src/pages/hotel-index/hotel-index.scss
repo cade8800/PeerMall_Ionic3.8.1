@@ -1,0 +1,44 @@
+page-hotel-index {
+  .scroll-content {
+    background-color: #F6F5FA;
+    .pamamblack {
+      margin-bottom: 0px;
+      .item {
+        img {
+          width: 20px;
+        }
+        .item-inner {
+          .input-wrapper {
+            .grid {
+              .fontmiddle {
+                text-align: right;
+                line-height: 220%;
+              }
+            }
+            .input {
+              font-size: 14px;
+            }
+            span {
+              font-size: 14px;
+            }
+            .label {
+              font-size: 14px;
+            }
+            .select-icon-inner {
+              display: none;
+            }
+          }
+          .c8e9093 {
+            color: #8e9093;
+          }
+          .ion-ios-arrow-forward-outline {
+            color: #B4B4B4;
+          }
+        }
+      }
+    }
+    .search-btn-block {
+      padding: 6px 16px;
+    }
+  }
+}

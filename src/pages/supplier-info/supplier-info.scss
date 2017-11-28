@@ -1,0 +1,101 @@
+page-supplier-info {
+  .scroll-content {
+    background-color: #F6F5FA;
+    .mainTitle {
+      margin-bottom: 8px;
+      background-color: #fff;
+      overflow: hidden;
+      .agencyImg {
+        width: 75px;
+        height: 75px;
+        float: left;
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-bottom: 10px;
+        -webkit-align-self: flex-start;
+        align-self: flex-start;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        -webkit-background-clip: padding-box!important;
+        background-clip: padding-box!important;
+      }
+      .agencyContent {
+        padding-left: 95px;
+        padding-top: 8px;
+        .grid {
+          .row {
+            .col {
+              h6 {
+                margin-top: 0px;
+                margin-bottom: 0px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+              }
+              img.certification {
+                width: 45px;
+                max-width: 200%;
+              }
+              img.relation {
+                width: 28px;
+                max-width: 200%;
+              }
+            }
+            .col.agencyName {
+              overflow: hidden;
+            }
+          }
+        }
+      }
+    }
+    .ussupplyinfomainul {
+      margin-bottom: 8px;
+      padding: 10px 15px;
+      background-color: #fff;
+      .ussupplycont {
+        width: 100%;
+        line-height: 30px;
+        font-size: 15px;
+        color: #4c4c4c;
+        height: 30px;
+        .label {
+          float: left;
+          height: 100%;
+          line-height: 30px;
+        }
+        .inputbox {
+          overflow: hidden;
+          height: 100%;
+          input {
+            border: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+  }
+  .mainFooter {
+    background-color: #fff;
+    .grid {
+      .row {
+        .col {
+          text-align: center;
+          img {
+            margin-right: 5px;
+            max-width: 18px;
+            max-height: 19px;
+            position: relative;
+            top: 2px;
+          }
+          a {
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+}

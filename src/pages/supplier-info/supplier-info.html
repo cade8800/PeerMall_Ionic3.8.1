@@ -1,0 +1,209 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>品牌档案</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="mainTitle">
+    <div class="agencyImg" [ngStyle]="{'background-image':'url('+info.AgencyImg+')'}"></div>
+    <div class="agencyContent">
+      <ion-grid>
+        <ion-row>
+          <ion-col class="agencyName">
+            <h6>{{info.AgencyName}}</h6>
+          </ion-col>
+          <ion-col col-auto>
+            <img class="certification" src="assets/img/yirenzheng@2x.png">
+          </ion-col>
+          <ion-col col-auto>
+            <img class="relation" src="assets/img/link@2x.png">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>{{info.Summary}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
+  <div class="segment-block">
+    <ion-segment [(ngModel)]="segment" color='lightblue'>
+      <ion-segment-button class="ussegmenttab" value="supplyCredit">
+        诚信档案
+      </ion-segment-button>
+      <ion-segment-button class="ussegmenttab" value="supplyContactInfo">
+        联系信息
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="segment">
+    <ion-list *ngSwitchCase="'supplyCredit'">
+
+      <ul class="ussupplyinfomainul">
+        <li class="ussupplycont usnowrap">
+          <label class="label">机构名称：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" value="{{info.AgencyName}}">
+          </div>
+        </li>
+        <li class="ussupplycont usnowrap">
+          <label class="label">业务类型：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" value="{{info.Type}}">
+          </div>
+        </li>
+        <li class="ussupplycont usnowrap">
+          <label class="label">业务范围：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" value="{{info.BusinessScope}}">
+          </div>
+        </li>
+        <li class="ussupplycont usnowrap">
+          <label class="label">机构类型：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" value="{{info.FlatType}}">
+          </div>
+        </li>
+        <li class="ussupplycont usnowrap">
+          <label class="label">所属公司：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" value="{{info.ParentAgencyName}}">
+          </div>
+        </li>
+        <li class="ussupplycont usnowrap">
+          <label class="label">公司规模：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" value="{{info.CompanySize}}">
+          </div>
+        </li>
+      </ul>
+
+      <ul class="ussupplyinfomainul">
+        <li class="ussupplycont usnowrap">
+          <label class="label">工商注册号：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" value="{{info.BusinessLicense}}">
+          </div>
+        </li>
+        <li class="ussupplycont usnowrap">
+          <label class="label">组织机构代码证：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" value="{{info.OrganizationCode}}">
+          </div>
+        </li>
+        <li class="ussupplycont usnowrap">
+          <label class="label">企业注册类型：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" value="{{info.EnterpriseRegistrationType}}">
+          </div>
+        </li>
+        <li class="ussupplycont usnowrap">
+          <label class="label">企业性质：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" value="{{info.FlatType}}">
+          </div>
+        </li>
+        <li class="ussupplycont usnowrap">
+          <label class="label">注册资金：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" value="{{info.RegisteredCapital}}">
+          </div>
+        </li>
+        <li class="ussupplycont usnowrap">
+          <label class="label">注册年份：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" value="{{info.RegistrationYear}}">
+          </div>
+        </li>
+      </ul>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'supplyContactInfo'">
+
+      <ul class="ussupplyinfomainul">
+        <li class="ussupplycont usnowrap">
+          <label class="label">联系人：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" [value]="contact.Name">
+          </div>
+        </li>
+        <li class="ussupplycont usnowrap">
+          <label class="label">手机：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" [value]="contact.Mobile">
+          </div>
+        </li>
+        <li class="ussupplycont usnowrap">
+          <label class="label">QQ：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" [value]="contact.QQ">
+          </div>
+        </li>
+        <li class="ussupplycont usnowrap">
+          <label class="label">微信：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" [value]="contact.WeChat">
+          </div>
+        </li>
+        <li class="ussupplycont usnowrap">
+          <label class="label">固定电话：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" [value]="info.TelePhone">
+          </div>
+        </li>
+        <li class="ussupplycont usnowrap">
+          <label class="label">传真：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" [value]="info.Fax">
+          </div>
+        </li>
+        <li class="ussupplycont usnowrap">
+          <label class="label">邮箱：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" [value]="contact.Email">
+          </div>
+        </li>
+      </ul>
+
+      <ul class="ussupplyinfomainul">
+        <li class="ussupplycont usnowrap">
+          <label class="label">地区：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" [value]="info.Country+info.Province+info.City">
+          </div>
+        </li>
+        <li class="ussupplycont usnowrap">
+          <label class="label">详细地址：</label>
+          <div class="inputbox">
+            <input type="text" readonly="readonly" [value]="info.DetailAddress">
+          </div>
+        </li>
+      </ul>
+
+    </ion-list>
+  </div>
+
+</ion-content>
+
+
+<ion-footer class="mainFooter">
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngIf='contact.QQ'>
+        <a target="_blank" [href]="'http://wpa.qq.com/msgrd?v=3&site=qq&menu=yes&uin='+contact.QQ">
+          <img src="assets/ui/qq.png">QQ咨询
+        </a>
+      </ion-col>
+      <ion-col *ngIf='contact.Id' (click)='uesChat(contact.Id)'>
+        <img src="assets/ui/ues.png">优信咨询
+      </ion-col>
+      <ion-col *ngIf='contact.Mobile||contact.Tel'>
+        <a [href]="'tel:'+contact.Mobile?contact.Mobile:contact.Tel">
+          <img src="assets/ui/phone.png">电话咨询</a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

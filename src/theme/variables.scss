@@ -1,0 +1,608 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+// Font path is used to include ionicons,
+// roboto, and noto sans fonts
+$font-path: "../assets/fonts";
+// The app direction is used to include
+// rtl styles in your app. For more info, please see:
+// http://ionicframework.com/docs/theming/rtl-support/
+$app-direction: ltr;
+@import "ionic.globals";
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/theming/overriding-ionic-variables/
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+$colors: ( 
+  CDCDCD:#CDCDCD, 
+  FF8A00:#FF8A00, 
+  C5C5C5:#C5C5C5, 
+  primary: #00A9FA, 
+  secondary: #32db64, 
+  danger: #f53d3d, 
+  light: #f4f4f4, 
+  dark: #222,
+  lightblue:#00A9FA, 
+  blackstyle: #000, 
+  888888:#888888, 
+  FF8201:#FF8201, 
+  FFFFFF:#FFFFFF
+  );
+.ion-page {
+  /*去掉android头部阴影*/
+  ion-header.header.header-md:after {
+    background: none;
+  }
+  ion-header.header {
+    span.button-inner {
+      font-size: 1.5rem;
+    }
+    .toolbar {
+      .bar-buttons-md[start] {
+        -webkit-box-ordinal-group: 4;
+        -webkit-order: 3;
+        -ms-flex-order: 3;
+        order: 3;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+      }
+      .title {
+        .toolbar-title {
+          text-align: center;
+          // color: #fff;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+  ion-header.header {
+    /*二级标题*/
+    .subheader {
+      padding: 3px 15px 10px 15px;
+      background-color: #00a9fa;
+      .subheader-item {
+        overflow: hidden;
+        background-color: #fff;
+        border-radius: 2px;
+        font-size: 15px;
+        padding: 6px 12px;
+        .icon {
+          float: left;
+          font-size: 25px;
+          color: #ddd;
+        }
+        .grid {
+          padding: 0px;
+          font-size: 10px;
+          .row {
+            .col {
+              padding: 0px;
+              img {
+                max-width: 16px;
+                padding-top: 5px;
+                margin-right: 3px;
+              }
+              .icon {
+                margin-top: 4px;
+                border-left: 0.5px solid #ddd;
+                margin-left: 5px;
+                padding-left: 5px;
+              }
+              form {
+                margin-top: 6px;
+                padding-left: 30px;
+              }
+              .input-block {
+                font-size: 14px;
+                padding-left: 0px;
+              }
+              .singlerow {
+                font-size: 14px;
+                margin-top: 5px;
+              }
+            }
+          }
+        }
+        form {
+          padding-left: 28px;
+          margin-top: 3px;
+          input {
+            border-width: 0px;
+            width: 100%;
+            font-size: 14px;
+          }
+        }
+        .input-block {
+          padding-left: 28px;
+          margin-top: 3px;
+          font-size: 14px;
+          color: #757575;
+        }
+      }
+    }
+    /*标题筛选块*/
+    .screening-block {
+      margin-top: 8px;
+      background-color: #fff;
+      border-bottom: 0.5px solid #ddd;
+      .row {
+        .col {
+          text-align: center;
+          font-size: 14px;
+        }
+        .togglescreening {
+          color: #00a9fa;
+          ion-icon {
+            transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+          }
+        }
+      }
+    }
+    /*标题筛选项*/
+    .screening-item {
+      border-top: 0.5px solid #ddd;
+      .screencont {
+        padding: 0 15px 0 15px;
+        background-color: #fff;
+        &:first-child {
+          padding-top: 20px;
+        }
+        .screenconttext {
+          font-size: 15px;
+          color: #1a1a1a;
+        }
+        ion-col {
+          span {
+            background-color: #f5f5f5;
+            text-align: center;
+            height: 32px;
+            line-height: 32px;
+            font-size: 12px;
+            border-radius: 3px;
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-break: keep-all;
+          }
+          .spanactive {
+            background-color: #f7fcff;
+            color: #40b6fe;
+          }
+        }
+      }
+      .usscreenbtn {
+        width: 100%;
+        ul {
+          width: 100%;
+          li {
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            font-size: 15px;
+            color: #1a1a1a;
+            background-color: #fff;
+            float: left;
+            width: 50%;
+            &:active {
+              background-color: #b2b2b2;
+            }
+          }
+          .ussavebtn {
+            color: #fff;
+            background-color: #ff8201;
+          }
+        }
+      }
+    }
+  }
+  .content {
+    .scroll-content {
+      // background-color: #F6F5FA;
+      /*遮罩层*/
+      .mask-block {
+        position: fixed;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 20;
+      }
+      /*产品详情页绝对定位返回按钮*/
+      .back {
+        width: 32px;
+        height: 32px;
+        overflow: hidden;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        z-index: 20;
+        img {
+          width: 100%;
+        }
+      }
+      /*产品详情页绝对定位分享按钮*/
+      .share {
+        width: 32px;
+        height: 32px;
+        overflow: hidden;
+        background-color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        text-align: center;
+        z-index: 20;
+        img {
+          width: 18px;
+          margin-top: 7.5px;
+        }
+      }
+      /*产品详情页轮播*/
+      .mainSlides {
+        height: 220px;
+        .swiper-container {
+          .swiper-wrapper {
+            .swiper-slide {
+              -webkit-align-self: flex-start;
+              align-self: flex-start;
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center center;
+              -webkit-background-clip: padding-box!important;
+              background-clip: padding-box!important;
+            }
+          }
+        }
+      }
+      /*公用产品列表样式*/
+      .list.productlist {
+        .productitem {
+          padding-top: 8px;
+          background-color: #fff;
+          .item {
+            border-bottom: 0.55px solid #c8c7cc;
+            ion-thumbnail {
+              background-color: #ddd;
+              width: 100px;
+              height: 100px;
+              margin: 0px 8px 0px 0;
+              -webkit-align-self: flex-start;
+              align-self: flex-start;
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center center;
+              -webkit-background-clip: padding-box!important;
+              background-clip: padding-box!important;
+              img {
+                height: 20px;
+                width: auto;
+              }
+            }
+            .item-inner {
+              border-bottom-width: 0px;
+              .label {
+                white-space: normal;
+                margin-top: 3px;
+                margin-bottom: 20px;
+                h2 {
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  -webkit-line-clamp: 2;
+                  overflow: hidden;
+                  font-size: 14px;
+                  color: #1a1a1a;
+                  line-height: 20px;
+                  img {
+                    height: 18px;
+                    position: relative;
+                    top: 4px;
+                  }
+                }
+                p {
+                  color: #191919;
+                  padding: 8px 0px;
+                  font-size: 14px;
+                  img {
+                    width: 15px;
+                    margin-right: 3px;
+                    position: relative;
+                    top: 1px;
+                  }
+                }
+                .price {
+                  .saleprice {
+                    color: #FF8300;
+                    font-size: 20px;
+                    margin-right: 10px;
+                  }
+                  .peerprice {
+                    font-size: 12px;
+                    color: #3E3E3E;
+                    text-decoration: line-through;
+                  }
+                }
+              }
+            }
+          }
+          .countdown {
+            padding: 6px 18px 8px;
+            color: #767676;
+            overflow: hidden;
+            position: relative;
+            top: -1px;
+            background-color: #fff;
+            border-bottom: 0.55px solid #c8c7cc;
+            span {
+              background-color: #F96D63;
+              color: #fff;
+              border-radius: 4px;
+              padding: 4px;
+            }
+            span:first-child {
+              margin-left: 8px;
+            }
+            label {
+              font-weight: 600;
+              color: #F96D63;
+            }
+            .allowance {
+              float: right;
+            }
+          }
+        }
+        .loadending {
+          color: #C6C7C9;
+          text-align: center;
+          padding: 18px;
+          font-size: 12px;
+        }
+      }
+      /*无更多数据 加载完毕*/
+      .loadallpro {
+        color: #C6C7C9;
+        text-align: center;
+        padding: 18px;
+        font-size: 12px;
+      }
+      /*选项卡segment标题块*/
+      .segment-block {
+        padding: 10px 10px 10px;
+        background-color: #fff;
+        .segment-button {
+          font-size: 14px;
+        }
+      }
+      /*产品详情页 标题块*/
+      .mainTitle {
+        padding: 15px 15px 0px;
+        margin-bottom: 8px;
+        background-color: #fff;
+        .title {
+          img {
+            max-width: 35px;
+            height: 21px;
+            position: relative;
+            top: 6px;
+          }
+          span {
+            font-size: 16px;
+            font-weight: 500;
+          }
+        }
+        .price {
+          color: #B2B2B2;
+          padding: 12px 0px;
+          border-bottom: 0.55px solid #ddd;
+          .code {
+            color: #FF8400;
+            font-size: 15px;
+          }
+          .quote {
+            color: #EB7B19;
+            font-size: 30px;
+          }
+          .oldquote {
+            margin-left: 8px;
+            text-decoration: line-through;
+          }
+        }
+        .supplier {
+          padding-left: 0px;
+          font-size: 14px;
+          .row {
+            .col {
+              img {
+                max-width: 20px;
+                max-height: 18px;
+                position: relative;
+                top: 2px;
+              }
+            }
+            .cddd {
+              color: #ddd;
+              font-size: 20px;
+              font-weight: 100;
+              line-height: 20px;
+              padding-left: 8px;
+              padding-right: 8px;
+            }
+            .col:first-child {
+              padding-left: 0px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/*公共loading样式*/
+
+.public-loading.loading-ios {
+  .loading-wrapper {
+    background-color: #fff;
+  }
+}
+
+/*日历天价格 黑色*/
+ion-calendar-month .primary button.days-btn.dayclass small {
+  color: #000;
+}
+
+a {
+  text-decoration: none;
+}
+
+.clear {
+  clear: both;
+  border: 0!important;
+  width: 0!important;
+  height: 0!important;
+}
+
+.usnowrap {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+
+.searchul {
+  padding: 0 2.5px 10px 2.5px;
+  li {
+    float: left;
+    width: 60px;
+    height: 33px;
+    border-radius: 2px;
+    text-align: center;
+    background-color: #f5f5f5;
+    line-height: 33px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    &:nth-child(5n) {
+      margin-right: 0;
+    }
+  }
+}
+
+.usiconbox {
+  display: inline-block;
+  width: 23px;
+  height: 23px;
+  img {
+    float: left;
+    max-width: 100%;
+  }
+}
+
+.screencont {
+  padding: 0 15px 0 15px;
+  background-color: #fff;
+  &:first-child {
+    padding-top: 20px;
+  }
+  .screenconttext {
+    font-size: 15px;
+    color: #1a1a1a;
+  }
+  ion-col {
+    span {
+      background-color: #f5f5f5;
+      text-align: center;
+      height: 32px;
+      line-height: 32px;
+      font-size: 12px;
+      border-radius: 3px;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-break: keep-all;
+    }
+    .spanactive {
+      background-color: #f7fcff;
+      color: #40b6fe;
+    }
+  }
+}
+
+.usscreenbtn {
+  width: 100%;
+  ul {
+    width: 100%;
+    li {
+      height: 44px;
+      line-height: 44px;
+      text-align: center;
+      border-top: 1px solid #eee;
+      font-size: 15px;
+      color: #1a1a1a;
+      background-color: #fff;
+      float: left;
+      width: 50%;
+      &:active {
+        background-color: #b2b2b2;
+      }
+    }
+    .ussavebtn {
+      color: #fff;
+      background-color: #ff8201;
+    }
+  }
+}
+
+.usscreentips {
+  color: #1a1a1a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+// App Windows Variables
+// --------------------------------------------------
+// Windows only Sass variables can go here
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+@import "ionic.theme.default";
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/ionicons/
+@import "ionic.ionicons";
+// Fonts
+// --------------------------------------------------
+@import "roboto";
+@import "noto-sans";

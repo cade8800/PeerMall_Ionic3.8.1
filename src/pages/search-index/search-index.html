@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-navbar>
+
+    <ion-item>
+      <ion-icon name="ios-search-outline" item-left color='CDCDCD'></ion-icon>
+      <form action="">
+        <input [(ngModel)]='key' autocomplete='off' name='key' type="search" placeholder="关键词" (keypress)='keySelect($event)' start>
+      </form>
+    </ion-item>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="history" *ngIf='!key'>
+
+    <div class="his-title">
+      <span>搜索历史</span>
+      <ion-icon item-end name="ios-trash-outline" (click)='clearHistory()'></ion-icon>
+    </div>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button *ngFor='let item of history' (click)='historyBtnClick(item.type,item.key)' ion-button small color='light'>{{item.key}}</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+  <div class="content" *ngIf='key'>
+
+    <ion-list>
+      <ion-item (click)='lineSelect()'>
+        <img src="assets/img/road@2x.png" item-start>
+        <p>{{key}}的线路</p>
+        <ion-icon name="arrow-forward" color='C5C5C5' item-end></ion-icon>
+      </ion-item>
+      <ion-item (click)='hotelSelect()'>
+        <img src="assets/img/hotel2@2x.png" item-start>
+        <p>{{key}}的酒店</p>
+        <ion-icon name="arrow-forward" color='C5C5C5' item-end></ion-icon>
+      </ion-item>
+      <ion-item (click)='ticketSelect()'>
+        <img src="assets/img/ticket2@2x.png" item-start>
+        <p>{{key}}的门票</p>
+        <ion-icon name="arrow-forward" color='C5C5C5' item-end></ion-icon>
+      </ion-item>
+      <ion-item (click)='supplierSelect()'>
+        <img src="assets/img/gongyings2@2x.png" item-start>
+        <p>{{key}}的供应商</p>
+        <ion-icon name="arrow-forward" color='C5C5C5' item-end></ion-icon>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-item *ngFor='let item of productList' (click)='goDetailPage(item.ProductType,item.ProductId)'>
+        <img *ngIf="item.ProductType=='线路'" src="assets/img/road@2x.png" item-start>
+        <img *ngIf="item.ProductType=='酒店'" src="assets/img/hotel2@2x.png" item-start>
+        <img *ngIf="item.ProductType=='门票'" src="assets/img/ticket2@2x.png" item-start>
+        <img *ngIf="item.ProductType=='单项'" src="assets/img/single.png" item-start>
+        <p>{{item.ProductName}}</p>
+        <p item-end>
+          <span>{{item.CurrencyCode|currencySymbolPipe}}{{item.PeerPrice}}</span>起
+        </p>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+</ion-content>

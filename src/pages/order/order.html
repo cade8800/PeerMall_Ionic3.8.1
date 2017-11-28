@@ -1,0 +1,123 @@
+<ion-header>
+  <ion-navbar color='FFFFFF'>
+    <ion-title>
+      确认订单
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="mainTitle">
+    <div class="title">
+      <span>{{input.OrderProductListInput[0].ProductName}}</span>
+    </div>
+    <div class="price">
+      {{input.OrderProductListInput[0].OrderProductDateListInput[0].date|date:'yyyy年MM月dd日'}}
+      <p *ngIf='input.PeerMallOrderInfoInput.location'>
+        {{input.PeerMallOrderInfoInput.location}}{{input.PeerMallOrderInfoInput.OrderType==2?'出发':''}}
+      </p>
+      <p *ngIf='input.bookTimeInfo'>
+        {{input.bookTimeInfo.startDate|date:'yyyy年MM月dd日'}}~ {{input.bookTimeInfo.endDate|date:'yyyy年MM月dd日'}}|共 {{input.bookTimeInfo.dateDiff}}晚
+      </p>
+    </div>
+    <ion-grid class="supplier">
+      <ion-row>
+        <ion-col col-auto>
+          <img src="assets/ui/supplier.png">
+        </ion-col>
+        <ion-col (click)='goSupplyStore()'>{{input.PeerMallOrderInfoInput.supplierName}}</ion-col>
+        <ion-col col-auto>
+          <img src='assets/ui/rigth.png'>
+        </ion-col>
+        <ion-col col-auto class="cddd">|</ion-col>
+        <ion-col col-auto (click)='uesConsult()'>
+          <img src="assets/ui/useblue.png">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-grid class="order-item">
+    <ion-row *ngFor='let item of input.OrderProductListInput[0].OrderProductDateListInput[0].OrderProductDateQuoteListInput'>
+      <ion-col align-self-center>{{item.name}}</ion-col>
+      <ion-col align-self-center col-auto class="price">{{item.currency|currencySymbolPipe}}{{item.price}}</ion-col>
+      <ion-col align-self-center col-auto>
+        <counter-input [(ngModel)]='item.Quantity' (total)='getTotal()'></counter-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list class="order-item">
+    <ion-list-header>
+      联系人
+    </ion-list-header>
+    <ion-item>
+      <ion-input [(ngModel)]='input.PeerMallOrderInfoInput.ContactName' type="text" placeholder="姓名"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]='input.PeerMallOrderInfoInput.ContactPhone' type="text" placeholder="手机号"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]='input.PeerMallOrderInfoInput.ContactEmail' type="text" placeholder="邮箱"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-list class="order-item mg-bottom">
+    <ion-item-sliding>
+      <button ion-item (click)="goOrderVisitor()">
+        填写游客信息
+        <ion-note item-end></ion-note>
+      </button>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-list class="order-item mg-bottom">
+    <ion-list-header>
+      <ion-label>开票</ion-label>
+      <ion-toggle (ionChange)='setDefaultInvoice()' color="1DC08C" [(ngModel)]="input.PeerMallOrderInfoInput.Invoice.IsActive"></ion-toggle>
+    </ion-list-header>
+    <ion-item-sliding *ngIf='input.PeerMallOrderInfoInput.Invoice.IsActive'>
+      <button ion-item (click)='goInvoiceInfo()'>
+        <p *ngIf='!input.PeerMallOrderInfoInput.Invoice.Title'>选择</p>
+        <div *ngIf='input.PeerMallOrderInfoInput.Invoice.Title'>
+          <p>发票抬头：{{input.PeerMallOrderInfoInput.Invoice.Title}}</p>
+          <p *ngIf='input.PeerMallOrderInfoInput.Invoice.TaxpayerId'>
+            税务号：{{input.PeerMallOrderInfoInput.Invoice.TaxpayerId}}
+          </p>
+        </div>
+        <ion-note item-end></ion-note>
+      </button>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-list class="order-item mg-bottom">
+    <ion-list-header>
+      <ion-label>邮寄</ion-label>
+      <ion-toggle (ionChange)='setDefaultShipping()' color="1DC08C" [(ngModel)]="input.PeerMallOrderInfoInput.Shipping.IsActive"></ion-toggle>
+    </ion-list-header>
+    <ion-item-sliding *ngIf='input.PeerMallOrderInfoInput.Shipping.IsActive'>
+      <button ion-item (click)='choiceShipping()'>
+        <p *ngIf='!input.PeerMallOrderInfoInput.Shipping.ReceiverName'>选择</p>
+        <div *ngIf='input.PeerMallOrderInfoInput.Shipping.ReceiverName'>
+          <p>{{input.PeerMallOrderInfoInput.Shipping.ReceiverName}},{{input.PeerMallOrderInfoInput.Shipping.PhoneNumber}}</p>
+          <p>{{input.PeerMallOrderInfoInput.Shipping.Areas+','+ input.PeerMallOrderInfoInput.Shipping.Street}}</p>
+        </div>
+        <ion-note item-end></ion-note>
+      </button>
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer class="mainFooter">
+  <ion-grid>
+    <ion-row>
+      <button ion-button full col-5 class="col" color='FFFFFF'>
+        <small>总价:</small>
+        <span class="price">{{input.PeerMallOrderInfoInput.currencyCode|currencySymbolPipe}}{{total}}</span>
+      </button>
+      <button ion-button full class="col" color='FF8A00' (click)='booking()'>立即预定</button>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
